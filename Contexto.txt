@@ -1,0 +1,58 @@
+Contexto:
+Desarrolla una aplicación SaaS de Marketing Automation llamada "Marketai". La aplicación debe guiar al usuario a través de un flujo de 10 pasos lógicos, integrando inteligencia artificial y visualización de datos.
+
+Stack Tecnológico Obligatorio:
+
+Frontend/Backend: Next.js (App Router) con TypeScript.
+
+Estilos: Tailwind CSS.
+
+Base de Datos: PostgreSQL con Prisma ORM.
+
+IA: Google Gemini SDK (@google/generative-ai).
+
+Scraping: Puppeteer o Cheerio (Node.js).
+
+Mapas: React-Leaflet o Mapbox.
+
+API Key Gemini: AIzaSyB9o4r0WJ1LJXmVrZl-bXHmf3TrERQMXiw (Configurar en .env).
+
+Arquitectura de la Interfaz (3 Columnas):
+
+Columna Izquierda: Navegación tipo "Stepper" con los 10 pasos.
+
+Columna Central: Área de trabajo dinámica según el paso activo.
+
+Columna Derecha: Panel de control fijo con Métricas, ROI y el Mapa.
+
+Flujo de los 10 Pasos a Implementar:
+
+Identificación del Propietario: Formulario para URL, Email y Nombre completo.
+
+Identificar Competencia: Lógica de búsqueda de competidores y análisis de "cosas que faltan" (gap analysis).
+
+Definición de Producto: Selector para definir el tipo de cliente ideal.
+
+Búsqueda de Clientes (Scraping): Buscador con filtros por Sector y Localización.
+
+Generación de Activos (Selector): Usar Gemini para generar: Ideas Market, Eslogan, Concepto de Logo, Folleto, Newsletter/Mailing y Banner.
+
+Estrategia RSS: Sugerencia y selección de canales de difusión automatizada.
+
+Predicción de Resultado: Algoritmo que muestre una estimación de éxito (0-100%).
+
+ROI: Calculadora interactiva de Retorno de Inversión basada en presupuesto y leads.
+
+Trackreport: Historial y reporte de seguimiento de todas las acciones del flujo.
+
+Map-Datos-API: Integración de mapa interactivo para visualizar leads y gestión de endpoints API.
+
+Tareas Específicas para Devin:
+
+Configura el esquema de Prisma para guardar toda la información de los 10 pasos vinculada al Owner.
+
+Crea los componentes de UI siguiendo una estética profesional (Modo Oscuro, colores azul y turquesa).
+
+Implementa las llamadas a la API de Gemini para que procesen el contexto de los pasos anteriores y devuelvan resultados coherentes en el paso 5.
+
+No utilizar Python bajo ninguna circunstancia. Todo el backend debe ser Next.js API Routes o Server Actions.

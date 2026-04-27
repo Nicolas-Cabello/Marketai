@@ -1,0 +1,166 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model Owner {
+  id          String   @id @default(cuid())
+  name        String
+  email       String   @unique
+  website     String?
+  description String?
+  businessName String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Relaciones con los 10 pasos
+  competition Analysis[]
+  filters     CustomerFilters[]
+  assets      GeneratedAssets[]
+  social      SocialStrategy[]
+  prediction  Prediction[]
+  roi         ROICalculation[]
+  trackreport Trackreport[]
+  mapData     MapData?
+  trackEvents TrackEvent[]
+
+  @@map("owners")
+}
+
+model Analysis {
+  id           String   @id @default(cuid())
+  ownerId      String
+  competitors  String   // Array de competidores analizados (JSON como string)
+  gaps         String?  // Cosas que faltan (gap analysis) (JSON como string)
+  insights     String?  // Insights generados por IA
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  owner Owner @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+
+  @@map("competition_analysis")
+}
+
+model CustomerFilters {
+  id          String   @id @default(cuid())
+  ownerId     String
+  sector      String?
+  location    String?
+  idealCustomer String?  // Perfil del cliente ideal (JSON como string)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  owner Owner @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+
+  @@map("customer_filters")
+}
+
+model GeneratedAssets {
+  id          String   @id @default(cuid())
+  ownerId     String
+  marketIdeas String?  // Ideas de mercado (JSON como string)
+  slogan      String?
+  logoConcept String?
+  brochure    String?
+  newsletter  String?
+  banner      String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  owner Owner @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+
+  @@map("generated_assets")
+}
+
+model SocialStrategy {
+  id          String   @id @default(cuid())
+  ownerId     String
+  channels    String   // Canales RSS y social media (JSON como string)
+  strategy    String?  // Estrategia de difusión
+  schedule    String?  // Programación de contenido (JSON como string)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  owner Owner @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+
+  @@map("social_strategy")
+}
+
+model Prediction {
+  id          String   @id @default(cuid())
+  ownerId     String
+  successRate Int      // Porcentaje de éxito (0-100)
+  factors     String?  // Factores considerados (JSON como string)
+  insights    String?  // Insights de la IA
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  owner Owner @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+
+  @@map("predictions")
+}
+
+model ROICalculation {
+  id          String   @id @default(cuid())
+  ownerId     String
+  budget      Float
+  cpc         Float
+  convRate    Float
+  avgSale     Float
+  visitors    Float
+  sales       Float
+  revenue     Float
+  roi         Float
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  owner Owner @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+
+  @@map("roi_calculations")
+}
+
+model Trackreport {
+  id          String   @id @default(cuid())
+  ownerId     String
+  action      String
+  status      String   // completed, in_progress, pending
+  timestamp   DateTime @default(now())
+  metadata    String?  // (JSON como string)
+
+  owner Owner @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+
+  @@map("trackreports")
+}
+
+model MapData {
+  id          String   @id @default(cuid())
+  ownerId     String   @unique
+  leads       String   // Datos de leads geolocalizados (JSON como string)
+  coordinates String?  // Coordenadas del mapa (JSON como string)
+  apiEndpoints String? // Endpoints API configurados (JSON como string)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  owner Owner @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+
+  @@map("map_data")
+}
+
+model TrackEvent {
+  id        String   @id @default(cuid())
+  ownerId   String
+  action    String   // Tipo de acción: owner_created, competitor_added, lead_found, etc.
+  data      String?  // Datos adicionales del evento (JSON como string)
+  timestamp DateTime @default(now())
+
+  owner Owner @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+
+  @@map("track_events")
+}
