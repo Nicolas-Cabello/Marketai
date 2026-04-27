@@ -1,12 +1,12 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, Suspense } from 'react';
 import Sidebar from '@/components/Sidebar';
 import MetricsPanel from '@/components/MetricsPanel';
 import Workspace from '@/components/Workspace';
 import { useRouter, useSearchParams } from 'next/navigation';
 
-export default function Workflow() {
+function WorkflowContent() {
   const [activeStep, setActiveStep] = useState(1);
   const [ownerData, setOwnerData] = useState<any>(null);
   const router = useRouter();
@@ -34,5 +34,23 @@ export default function Workflow() {
       <Workspace activeStep={activeStep} onOwnerData={handleOwnerData} />
       <MetricsPanel />
     </div>
+  );
+}
+
+export default function Workflow() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen bg-surface flex items-center justify-center">
+        <div className="text-center">
+          <div className="w-16 h-16 bg-slate-800 rounded-xl flex items-center justify-center mx-auto mb-4 border border-slate-700">
+            <div className="w-8 h-8 border-2 border-primary border-t-transparent rounded-full animate-spin" />
+          </div>
+          <h3 className="text-lg font-bold text-white mb-2">Cargando Workflow...</h3>
+          <p className="text-slate-400">Preparando tu espacio de trabajo</p>
+        </div>
+      </div>
+    }>
+      <WorkflowContent />
+    </Suspense>
   );
 }
