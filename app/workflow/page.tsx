@@ -1,27 +1,29 @@
 'use client';
 
-import React, { useState, Suspense } from 'react';
+import React, { useState, useEffect } from 'react';
 import Sidebar from '@/components/Sidebar';
 import MetricsPanel from '@/components/MetricsPanel';
 import Workspace from '@/components/Workspace';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 
-function WorkflowContent() {
+export default function Workflow() {
   const [activeStep, setActiveStep] = useState(1);
   const [ownerData, setOwnerData] = useState<any>(null);
   const router = useRouter();
-  const searchParams = useSearchParams();
 
-  // Obtener el paso inicial de los parámetros URL
-  React.useEffect(() => {
-    const stepParam = searchParams.get('step');
-    if (stepParam) {
-      const step = parseInt(stepParam);
-      if (step >= 1 && step <= 10) {
-        setActiveStep(step);
+  // Obtener el paso inicial de la URL usando window.location (client-side only)
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const urlParams = new URLSearchParams(window.location.search);
+      const stepParam = urlParams.get('step');
+      if (stepParam) {
+        const step = parseInt(stepParam);
+        if (step >= 1 && step <= 10) {
+          setActiveStep(step);
+        }
       }
     }
-  }, [searchParams]);
+  }, []);
 
   const handleOwnerData = (data: any) => {
     setOwnerData(data);

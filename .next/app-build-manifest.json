@@ -1,60 +1,20 @@
 {
   "pages": {
-    "/api/owners/route": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/api/owners/route.js"
-    ],
     "/layout": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/css/app/layout.css",
       "static/chunks/app/layout.js"
     ],
-    "/workflow/page": [
+    "/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/workflow/page.js"
+      "static/chunks/app/page.js"
     ],
-    "/api/competition/route": [
+    "/api/owners/route": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/api/competition/route.js"
-    ],
-    "/api/filters/route": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/api/filters/route.js"
-    ],
-    "/api/leads/route": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/api/leads/route.js"
-    ],
-    "/api/assets/route": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/api/assets/route.js"
-    ],
-    "/api/social/route": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/api/social/route.js"
-    ],
-    "/api/prediction/route": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/api/prediction/route.js"
-    ],
-    "/api/track/route": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/api/track/route.js"
-    ],
-    "/api/map/route": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/api/map/route.js"
+      "static/chunks/app/api/owners/route.js"
     ]
   }
 }
