@@ -1,198 +1,107 @@
 # Marketai - Marketing Automation SaaS
 
-🚀 **Plataforma de automatización de marketing con IA integrada**
+Una aplicación completa de automatización de marketing con flujo de trabajo de 10 pasos.
 
-## 📋 Resumen del Proyecto
+## 🚀 Características
 
-Marketai es una aplicación SaaS completa de 10 pasos para automatización de marketing, migrada exitosamente de React/Vite a Next.js 14 con App Router. La aplicación incluye análisis de competencia, generación de leads con IA, creación de activos de marketing, predicción de éxito y más.
+- **Flujo de trabajo completo**: 10 pasos para automatización de marketing
+- **Base de datos en memoria**: Implementación optimizada para rendimiento
+- **UI interactiva**: Diseño moderno con Tailwind CSS y Framer Motion
+- **API endpoints**: Endpoints completos para todos los pasos del workflow
+- **Layout responsivo**: Navegación con sidebar y diseño adaptable
+- **Procesamiento en tiempo real**: Visualización y procesamiento de datos
 
-## ✅ Características Implementadas
+## 🛠️ Tech Stack
 
-### 🏗️ Arquitectura Moderna
-- **Next.js 14** con App Router
-- **TypeScript** para tipado completo
-- **Tailwind CSS** con tema oscuro personalizado
-- **Prisma ORM** con PostgreSQL
-- **Google Gemini SDK** para IA
-- **Framer Motion** para animaciones
+- **Frontend**: Next.js 14, React, TypeScript
+- **Styling**: Tailwind CSS, Framer Motion
+- **Backend**: Next.js API Routes
+- **Database**: PostgreSQL con Prisma (configurado para producción)
+- **Icons**: Lucide React
+- **Charts**: Recharts
 
-### 📊 Workflow de 10 Pasos
-1. **Identificación del Propietario** - Registro y perfil del negocio
-2. **Análisis de Competencia** - Scraping y análisis competitivo
-3. **Definición de Producto** - Filtros de cliente ideal
-4. **Búsqueda de Clientes** - Lead generation con exportación CSV
-5. **Generación de Activos** - Creación de contenido con IA
-6. **Estrategia Social Media** - RSS y programación de contenido
-7. **Predicción de Resultado** - Análisis predictivo con IA
-8. **Calculadora ROI** - Métricas financieras interactivas
-9. **Trackreport & Historial** - Dashboard de seguimiento
-10. **Mapa Interactivo** - Geolocalización y API endpoints
+## 📋 Pasos del Workflow
 
-### 🎨 UI/UX Premium
-- Diseño de 3 columnas responsivo
-- Stepper navigation interactivo
-- Dark theme con gradientes modernos
-- Animaciones fluidas y micro-interacciones
-- Metrics panel en tiempo real
+1. **Información del Negocio** - Datos básicos de la empresa
+2. **Análisis de Competencia** - Investigación competitiva
+3. **Filtros de Leads** - Configuración de criterios
+4. **Generación de Leads** - Creación de prospectos
+5. **Análisis de Activos** - Evaluación de recursos
+6. **Estrategia Social Media** - Planificación de redes sociales
+7. **Predicción de Mercado** - Análisis predictivo
+8. **Calculadora ROI** - Métricas de retorno
+9. **Trackreport & Historial** - Seguimiento y reportes
+10. **API Endpoints & Configuración** - Gestión de APIs y datos geolocalizados
 
-## 🚀 Despliegue en Producción
+## 🚀 Despliegue en Vercel
 
-### Variables de Entorno Requeridas
+### 1. Variables de Entorno
 
-```bash
-# API Keys
-GEMINI_API_KEY=your_gemini_api_key
-NEXT_PUBLIC_GEMINI_API_KEY=your_gemini_api_key
+Configura estas variables en tu dashboard de Vercel:
 
-# Base de Datos
-DATABASE_URL=postgresql://user:pass@host:5432/marketai
-
-# URLs
-NEXT_PUBLIC_APP_URL=https://your-domain.vercel.app
-NEXT_PUBLIC_API_URL=https://your-domain.vercel.app/api
-
-# Mapbox (Opcional)
-NEXT_PUBLIC_MAPBOX_TOKEN=your_mapbox_token
+```
+DATABASE_URL="postgres://4d8f7dc7576c9a301ba32aaa1ccb8cee1f1ab8e0840faee1abd92ec1ac1e5573:sk_Ra24u9K8B1RpUQJbyJH1Q@db.prisma.io:5432/postgres?sslmode=require"
+POSTGRES_URL="postgres://4d8f7dc7576c9a301ba32aaa1ccb8cee1f1ab8e0840faee1abd92ec1ac1e5573:sk_Ra24u9K8B1RpUQJbyJH1Q@db.prisma.io:5432/postgres?sslmode=require"
+PRISMA_DATABASE_URL="postgres://4d8f7dc7576c9a301ba32aaa1ccb8cee1f1ab8e0840faee1abd92ec1ac1e5573:sk_Ra24u9K8B1RpUQJbyJH1Q@db.prisma.io:5432/postgres?sslmode=require"
+NEXTAUTH_URL="https://tu-dominio.vercel.app"
+NEXTAUTH_SECRET="tu-secreto-nextauth-aqui"
 ```
 
-### Instalación y Despliegue
+### 2. Pasos para Desplegar
 
-1. **Clonar el repositorio**
-```bash
-git clone <repository-url>
-cd marketai
-```
+1. **Conecta tu repositorio GitHub a Vercel**
+2. **Importa el proyecto Marketai**
+3. **Configura las variables de entorno** en Settings > Environment Variables
+4. **Agrega los dominios personalizados** si es necesario
+5. **Haz deploy** - Vercel construirá y desplegará automáticamente
 
-2. **Instalar dependencias**
+### 3. Configuración Post-Despliegue
+
+- Actualiza `NEXTAUTH_URL` con tu dominio real de Vercel
+- Genera un `NEXTAUTH_SECRET` seguro: `openssl rand -base64 32`
+- Configura cualquier API key adicional que necesites
+
+## 📦 Instalación Local
+
 ```bash
+# Clona el repositorio
+git clone https://github.com/tu-usuario/Marketai.git
+cd Marketai
+
+# Instala dependencias
 npm install
-```
 
-3. **Configurar variables de entorno**
-```bash
-cp .env.production .env.local
-# Editar .env.local con tus variables
-```
+# Configura variables de entorno
+cp .env.example .env.local
 
-4. **Generar cliente Prisma**
-```bash
+# Ejecuta la base de datos (opcional - usa in-memory DB por defecto)
 npx prisma generate
+
+# Inicia el servidor de desarrollo
+npm run dev
 ```
 
-5. **Ejecutar migraciones**
-```bash
-npx prisma db push
-```
+La aplicación estará disponible en `http://localhost:3005`
 
-6. **Construir para producción**
-```bash
-npm run build
-```
+## 🎯 Uso
 
-7. **Iniciar servidor**
-```bash
-npm start
-```
+1. **Regístrate** o **inicia sesión** en la aplicación
+2. **Completa el flujo de 10 pasos** para configurar tu automatización
+3. **Monitorea tus resultados** en el dashboard
+4. **Exporta datos** y configura integraciones API
 
-### Despliegue en Vercel
+## 🤝 Contribuir
 
-1. **Conectar repositorio a Vercel**
-2. **Configurar variables de entorno en Vercel**
-3. **Despliegue automático** con cada push a main
-
-## 📁 Estructura del Proyecto
-
-```
-marketai/
-├── app/                    # Next.js App Router
-│   ├── api/               # API routes (10 endpoints)
-│   ├── globals.css        # Estilos globales
-│   ├── layout.tsx         # Layout principal
-│   └── page.tsx           # Página principal
-├── components/            # Componentes React
-│   ├── MetricsPanel.tsx   # Panel de métricas
-│   ├── Sidebar.tsx        # Navegación stepper
-│   └── Workspace.tsx      # Contenido dinámico
-├── lib/                   # Utilidades
-│   ├── constants.ts       # Constantes de la app
-│   ├── gemini.ts          # Cliente Gemini
-│   ├── prisma.ts          # Cliente Prisma
-│   ├── scraping.ts        # Funciones de scraping
-│   └── utils.ts           # Utilidades varias
-├── prisma/                # Base de datos
-│   ├── schema.prisma      # Esquema completo
-│   └── migrations/        # Migraciones
-└── public/                # Archivos estáticos
-```
-
-## 🔧 Scripts Disponibles
-
-```bash
-# Desarrollo
-npm run dev              # Servidor de desarrollo
-npm run build            # Construir para producción
-npm run start            # Iniciar producción
-
-# Base de datos
-npm run db:generate      # Generar cliente Prisma
-npm run db:push          # Push del esquema
-npm run db:migrate       # Ejecutar migraciones
-npm run db:studio        # Abrir Prisma Studio
-
-# Calidad
-npm run lint             # Linting del código
-npm run type-check       # Verificación de tipos
-npm run test             # Ejecutar tests
-
-# Despliegue
-npm run deploy:vercel    # Despliegue a Vercel
-npm run analyze          # Análisis de bundle
-```
-
-## 🎯 Métricas de Rendimiento
-
-- **Performance**: 95+ (Lighthouse)
-- **Accessibility**: 100
-- **Best Practices**: 100
-- **SEO**: 95+
-- **Bundle Size**: < 200KB gzipped
-
-## 🔒 Características de Seguridad
-
-- Headers de seguridad configurados
-- Rate limiting en APIs
-- Validación de inputs con Zod
-- Variables de entorno seguras
-- CORS configurado
-
-## 📈 Optimizaciones Implementadas
-
-- **Code Splitting** automático
-- **Lazy Loading** de componentes
-- **Image Optimization** con Next.js
-- **Bundle Analysis** disponible
-- **Cache Strategy** implementada
-- **Compression** habilitada
-
-## 🤝 Contribución
-
-1. Fork del repositorio
-2. Crear feature branch
-3. Commit con cambios
-4. Push al branch
-5. Crear Pull Request
+1. Fork el repositorio
+2. Crea una feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit tus cambios (`git commit -m 'Add some AmazingFeature'`)
+4. Push a la branch (`git push origin feature/AmazingFeature`)
+5. Abre un Pull Request
 
 ## 📄 Licencia
 
-MIT License - Ver archivo LICENSE
+Este proyecto está bajo la Licencia MIT - mira el archivo [LICENSE](LICENSE) para detalles.
 
-## 🆘 Soporte
+## 📞 Soporte
 
-Para soporte técnico o preguntas:
-- Email: support@marketai.com
-- Docs: https://docs.marketai.com
-- Issues: GitHub Issues
-
----
-
-**Marketai v2.0** - Construido con ❤️ usando Next.js 14, TypeScript y Tailwind CSS
+Para soporte, email a nicolasmorales@example.com o crea un issue en el repositorio.
